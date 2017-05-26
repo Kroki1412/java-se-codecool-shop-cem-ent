@@ -1,23 +1,19 @@
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
-
 import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.LoginController;
 import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.jdbc.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.jdbc.ProductDaoJdbc;
-import com.codecool.shop.dao.jdbc.SupplierDaoJdbc;
-import com.codecool.shop.dao.jdbc.UserDaoJdbc;
-import com.codecool.shop.model.*;
+import org.slf4j.LoggerFactory;
+import  org.slf4j.Logger;
 import spark.Request;
 import spark.Response;
 import spark.TemplateEngine;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
+import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
+
 public class Main {
 
-
+    private static final Logger logger = LoggerFactory.getLogger (Main.class);
 
     public static void main(String[] args) {
 
@@ -35,6 +31,7 @@ public class Main {
 
         //populateData();
 
+        logger.info ("the server is running");
 
         // Always add generic routes to the end
         get("/", productController::renderProducts, templateEngine);
