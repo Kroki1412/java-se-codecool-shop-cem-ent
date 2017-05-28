@@ -2,14 +2,19 @@ package com.codecool.shop.dao.jdbc;
 
 import com.codecool.shop.DbConnection;
 import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * this class is handling the product category objects from and to the database
+ */
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
@@ -20,6 +25,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     private ProductCategoryDaoJdbc() {
     }
 
+    /** Only a single version is allowed.  */
+
     public static ProductCategoryDaoJdbc getInstance() {
         if (instance == null) {
             instance = new ProductCategoryDaoJdbc();
@@ -27,7 +34,10 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         return instance;
     }
 
-
+    /**
+     * add product category to the memory dao
+     * @param category adds a category to the memory Array.
+     */
 
     @Override
     public void add(ProductCategory category) {
@@ -54,6 +64,12 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         }
     }
 
+    /**
+     * find the product category according to the ID
+     *
+     * @param id the id to search for in the array
+     * @return returns the product
+     */
 
     @Override
     public ProductCategory find(int id) {
@@ -70,6 +86,12 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         }
         return null;
     }
+
+    /**
+     * removes the product
+     *
+     * @param id removes the product
+     */
 
     @Override
     public void remove(int id) {
@@ -99,6 +121,12 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         }
         return null;
     }
+
+    /**
+     * get all of the product category
+     *
+     * @return
+     */
 
     private static ProductCategory createProductCategory(ResultSet resultSet) throws SQLException {
         return new ProductCategory(resultSet.getInt("id"),

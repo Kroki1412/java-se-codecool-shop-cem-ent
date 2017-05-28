@@ -11,12 +11,21 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * this class is handling the prroduct objects from and to the database
+ */
 
 public class ProductDaoJdbc implements ProductDao {
 
     private DbConnection dbConnection = new DbConnection();
     private SupplierDaoJdbc supplier = SupplierDaoJdbc.getInstance();
     private ProductCategoryDaoJdbc productCategory = ProductCategoryDaoJdbc.getInstance();
+
+    /**
+     * adds a produte
+     *
+     * @param product to be added
+     */
 
     @Override
     public void add(Product product) {
@@ -45,6 +54,13 @@ public class ProductDaoJdbc implements ProductDao {
         }
     }
 
+    /**
+     * finds the product according to id
+     *
+     * @param id searches te product according to this
+     * @return returns the found product
+     */
+
     @Override
     public Product find(int id) {
 
@@ -61,6 +77,13 @@ public class ProductDaoJdbc implements ProductDao {
         return null;
     }
 
+    /**
+     * removes the product
+     *
+     * @param id removes the product according to the id
+     */
+
+
     @Override
     public void remove(int id) {
         String query = "DELETE FROM products WHERE id=?;";
@@ -72,6 +95,12 @@ public class ProductDaoJdbc implements ProductDao {
             e.printStackTrace();
         }
     }
+
+    /**
+     * gets all the products
+     *
+     * @return returns all the products as a list
+     */
 
 
     @Override
@@ -91,6 +120,13 @@ public class ProductDaoJdbc implements ProductDao {
         return null;
     }
 
+    /**
+     * gets the list of products by supplier
+     *
+     * @param supplier to search for
+     * @return returns the list of products according to the supplier
+     */
+
     @Override
     public List<Product> getBy(Supplier supplier) {
         LinkedList<Product> productList = new LinkedList<>();
@@ -108,6 +144,14 @@ public class ProductDaoJdbc implements ProductDao {
         }
         return null;
     }
+
+    /**
+     * gets the product by category
+     *
+     * @param productCategory the category to search for
+     * @return returns the products in that category.
+     */
+
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {

@@ -1,23 +1,21 @@
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
-
 import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.LoginController;
 import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.jdbc.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.jdbc.ProductDaoJdbc;
-import com.codecool.shop.dao.jdbc.SupplierDaoJdbc;
-import com.codecool.shop.dao.jdbc.UserDaoJdbc;
-import com.codecool.shop.model.*;
 import spark.Request;
 import spark.Response;
 import spark.TemplateEngine;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
+import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
+
 public class Main {
 
-
+    /**
+     * This is the entry point of the program and handles the server start and all the requests.
+     *
+     * @param args is not used (but needed because of java)
+     */
 
     public static void main(String[] args) {
 

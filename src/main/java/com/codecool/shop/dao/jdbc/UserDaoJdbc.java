@@ -10,6 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is handling the user objects from and to the database
+ */
+
 public class UserDaoJdbc implements UserDao {
 
     DbConnection connection = new DbConnection();
@@ -19,12 +23,20 @@ public class UserDaoJdbc implements UserDao {
     private UserDaoJdbc() {
     }
 
+    /** Only a single version is allowed.  */
+
     public static UserDaoJdbc getInstance() {
         if (instance == null) {
             instance = new UserDaoJdbc();
         }
         return instance;
     }
+
+    /**
+     * to add a user the the database
+     *
+     * @param user to add
+     */
 
     @Override
     public void add(User user) {
@@ -64,6 +76,13 @@ public class UserDaoJdbc implements UserDao {
 
     }
 
+    /**
+     * Find the user according to id
+     *
+     * @param id to search for
+     * @return returns the user object
+     */
+
     @Override
     public User find(int id) {
 
@@ -88,6 +107,13 @@ public class UserDaoJdbc implements UserDao {
         return null;
     }
 
+    /**
+     * Find the user according to a string
+     *
+     * @param name to search for
+     * @return returns the user object
+     */
+
     public User find(String name) {
         String query = "SELECT * FROM users WHERE name ='" + name + "';";
         try (Connection conn = connection.getConnection();
@@ -110,6 +136,12 @@ public class UserDaoJdbc implements UserDao {
         }
         return null;
     }
+
+    /**
+     * remove the user
+     *
+     * @param id to remover
+     */
 
     @Override
     public void remove(int id) {
@@ -138,6 +170,12 @@ public class UserDaoJdbc implements UserDao {
             e.printStackTrace();
         }
     }
+
+    /**
+     * get all users
+     *
+     * @return a list of all users.
+     */
 
 
     @Override
